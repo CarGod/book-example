@@ -39,19 +39,28 @@ class NewVisitorTest(unittest.TestCase):
         # Todo table show "1: Buy peacock feathers"
         inputbox.send_keys(Keys.ENTER)
 
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == '1: Buy peacock feathers' for row in rows),
-            "New to-do item did not appear in table"
-        )
-
         # Page and displays a text box, you can enter additional todi.
         # She entered the "Use peacock feathers to make a fly"
         # Edith things very organized
-        self.fail('Finish the test!')
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys('Use peacock feathers to make a fly')
+        inputbox.send_keys(Keys.ENTER)
 
         # Page updated again, her list shows the two todo.
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn('1: Buy peacock feathers', [row.text for row in rows])
+        self.assertIn(
+            '2: Use peacock feathers to make a fly',
+            [row.text for row in rows]
+        )
+
+        # Edith wondered whether this site will remember her list
+        # She saw her website generates a unique URL
+        # There are some pages thatfeature Subtext
+        self.fail('Finish the test!')
+
+        # She visited the URL, are still found to-do list
         # [...]
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
