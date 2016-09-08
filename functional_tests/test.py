@@ -1,10 +1,11 @@
 # -*- coding:utf-8 -*-
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import unittest
+import time
 
-class NewVisitorTest(unittest.TestCase):
-    
+class NewVisitorTest(LiveServerTestCase):
+
     def setUp(self):
         self.browser = webdriver.Chrome()
         self.browser.implicitly_wait(3)
@@ -24,7 +25,8 @@ class NewVisitorTest(unittest.TestCase):
     def test_can_start_a_list_and_retrieve_it_later(self):
         # Edith hearda cool online application todo.
         # She looked at the project home page.
-        self.browser.get("http://localhost:8000")
+        print(self.live_server_url)
+        self.browser.get(self.live_server_url)
 
         # She noted that the title of the page and head include "To-Do" word
         self.assertIn('To-Do', self.browser.title)
@@ -65,5 +67,3 @@ class NewVisitorTest(unittest.TestCase):
 
         # She visited the URL, are still found to-do list
         # [...]
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
