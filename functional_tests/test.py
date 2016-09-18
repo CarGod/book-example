@@ -25,7 +25,6 @@ class NewVisitorTest(LiveServerTestCase):
     def test_can_start_a_list_and_retrieve_it_later(self):
         # Edith hearda cool online application todo.
         # She looked at the project home page.
-        print(self.live_server_url)
         self.browser.get(self.live_server_url)
 
         # She noted that the title of the page and head include "To-Do" word
@@ -93,7 +92,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn('Buy milk', page_text)
 
         # Two people are satisfied to go to bed
-        self.fail('Finish the test!')
+        # self.fail('Finish the test!')
 
 
         # [...]
